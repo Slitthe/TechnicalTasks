@@ -6,8 +6,14 @@ namespace ExamplesDisplay.Examples
 {
     public class YieldFiboTwo : IExample
     {
-        public string StartMessage { get; set; }  = "asdsadsa";
-        public string Name { get; set; } = "Fibonacci (second example) sequence using yield return";
+        public YieldFiboTwo()
+        {
+            Name = "Fibonacci (second example) sequence using yield return";
+            StartMessage = "asdsadsa";
+        }
+
+        public string StartMessage { get; set; }
+        public string Name { get; set; }
         public string Display()
         {
             string consoleText = "";
@@ -23,8 +29,6 @@ namespace ExamplesDisplay.Examples
         private static IEnumerable<int> GetFiboNumbers(int maxValue)
         {
             int[] fiboBase = new int[] { 0, 1 };
-
-
 
             while (fiboBase[1] < maxValue)
             {

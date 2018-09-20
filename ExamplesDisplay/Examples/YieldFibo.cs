@@ -11,8 +11,8 @@ namespace ExamplesDisplay.Examples
             StartMessage = "asdsadsa"; ;
             Name = "Fibonacci sequence using yield return";
         }
-        string StartMessage { get; set; }
-        string Name { get; set; };
+        public string StartMessage { get; set; }
+        public string Name { get; set; }
         public string Display()
         {
             string consoleText = "";

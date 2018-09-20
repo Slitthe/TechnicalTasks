@@ -43,7 +43,9 @@ namespace ExamplesDisplay
         public static List<IExample> ExamplesList = new List<IExample>()
         {
             new YieldFibo(),
-            new YieldFiboTwo()
+            new YieldFiboTwo(),
+            new EnumerableExample(),
+            new ListExample()
 
         };
 
