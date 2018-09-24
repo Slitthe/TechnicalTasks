@@ -45,8 +45,8 @@ namespace ExamplesDisplay
             new YieldFibo(),
             new YieldFiboTwo(),
             new EnumerableExample(),
-            new ListExample()
-
+            new ListExample(),
+            new LinqExample()
         };
 
 
