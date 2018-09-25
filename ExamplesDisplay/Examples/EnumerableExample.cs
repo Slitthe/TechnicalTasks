@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExamplesDisplay.Examples
 {
-    class EnumerableExample : IExample
+    class EnumeratorExample : IExample
     {
         public string StartMessage { get; set; } = "Custom IEnumerable";
         public string Name { set; get; } = "Simulating a foreach using an IEnumerable";

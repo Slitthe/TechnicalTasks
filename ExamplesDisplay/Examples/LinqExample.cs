@@ -54,16 +54,16 @@ namespace ExamplesDisplay.Examples
 
 
             };
-            consoleText += descriptionValueFormat("Raw dummy data", writeList(dummyData) );
+            consoleText += descriptionValueFormat("Raw dummy data", DisplayFormatHelpers.writeList<Person>(dummyData) );
 
 
             // where
             var femaleOnly = dummyData.Where(person => person.Gender == "F");
-            consoleText += descriptionValueFormat("where method, select only Gender = \"F\"", writeList<Person>(femaleOnly));
+            consoleText += descriptionValueFormat("where method, select only Gender = \"F\"", DisplayFormatHelpers.writeList<Person>(femaleOnly));
 
             // select
             var onlyFirstName = dummyData.Select(person => person.FirstName);
-            consoleText += descriptionValueFormat("Select linq method, only first names", writeList<string>(onlyFirstName));
+            consoleText += descriptionValueFormat("Select linq method, only first names", DisplayFormatHelpers.writeList<string>(onlyFirstName));
 
 
             // any
@@ -73,12 +73,12 @@ namespace ExamplesDisplay.Examples
             // take
 
             var takeExample = dummyData.Take(3);
-            consoleText += descriptionValueFormat("Take the first 3 elements only", writeList<Person>(takeExample));
+            consoleText += descriptionValueFormat("Take the first 3 elements only", DisplayFormatHelpers.writeList<Person>(takeExample));
 
 
             // skip
             var skipExample = dummyData.Skip(2);
-            consoleText += descriptionValueFormat("Skip the first 2 elements", writeList<Person>(skipExample));
+            consoleText += descriptionValueFormat("Skip the first 2 elements", DisplayFormatHelpers.writeList<Person>(skipExample));
 
 
             // first
@@ -101,36 +101,24 @@ namespace ExamplesDisplay.Examples
                         .Skip(1) // ignore the first item
                         .Take(2) // only take 2 results from the collection
                         .Select(p => p.FirstName + " " + p.LastName); // return a specific value instead of the whole
-            consoleText += descriptionValueFormat("Combo", writeList<string>(combo));
 
 
+            consoleText += descriptionValueFormat("Combo: .Where(p => p.Age >= 20)\n\t.Skip(1)\n\t.Take(2)\n\t.Select(p => p.FirstName + \" \" + p.LastName)", DisplayFormatHelpers.writeList<string>(combo));
 
-
+            
             return consoleText;
         }
 
         private string descriptionValueFormat(string desc, string val)
         {
             var formattedString = "\n\n";
-
-
+            
             formattedString += desc;
             formattedString += "\n------------------";
             formattedString += val;
 
             return formattedString;
         }
-        private string writeList<T>(IEnumerable<T> listToWrite)
-        {
-            var returnText = "";
-            foreach (var item in listToWrite)
-            {
-                returnText += item + ",";
-            }
-
-            return returnText;
-        }
-
 
     }
 }

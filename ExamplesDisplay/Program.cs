@@ -37,16 +37,18 @@ namespace ExamplesDisplay
                 }
 
                 return consoleText;
+
             }
         }
 
         public static List<IExample> ExamplesList = new List<IExample>()
         {
             new YieldFibo(),
-            new YieldFiboTwo(),
-            new EnumerableExample(),
-            new ListExample(),
-            new LinqExample()
+            // new EnumerableExample(),
+            // new ListExample(),
+            new LinqExample(),
+            new ExtensionMethods(),
+            new CustomEnumerator()
         };
 
 
@@ -75,7 +77,6 @@ namespace ExamplesDisplay
                 {
                     KeyChecker(key);
                 }
-
 
             }
         }

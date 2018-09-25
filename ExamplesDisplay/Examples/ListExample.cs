@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using ExamplesDisplay;
 
 namespace ExamplesDisplay.Examples
 {
@@ -35,7 +36,7 @@ namespace ExamplesDisplay.Examples
 
             List<string> colorsList = new List<string> { "Red", "Green", "Blue" };
      
-            displayText += writeList(colorsList);
+            displayText += DisplayFormatHelpers.writeList<string>(colorsList);
 
             colorsList.Insert(1, "Yellow");
             displayText += descriptionValueFormat("Insert item at index 1", writeList(colorsList));
