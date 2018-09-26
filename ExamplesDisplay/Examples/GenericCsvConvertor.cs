@@ -38,9 +38,7 @@ namespace ExamplesDisplay.Examples
                 "Object list to CSV format",
                 convertor.ToCsv()
             );
-
-
-
+            
             return displayText;
         }
         class Car
@@ -101,6 +99,7 @@ namespace ExamplesDisplay.Examples
                 IList<string> currentItemLine = new List<string>();
 
                 var fields = objList[0].GetType().GetFields();
+
                 foreach (T item in objList)
                 {
                     currentItemLine.Clear();
@@ -110,8 +109,7 @@ namespace ExamplesDisplay.Examples
                         var value = field.GetValue(item);
                         currentItemLine.Add(value.ToString());
                     }
-
-
+                    
                     csvBody.Add(string.Join(',', currentItemLine));
                 }
 

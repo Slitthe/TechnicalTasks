@@ -49,7 +49,8 @@ namespace ExamplesDisplay
             new CustomEnumerator(),
             new IListExample(),
             new GenericWhere(),
-            new GenericCsvConvertor()
+            new GenericCsvConvertor(),
+            new GenericToArray()
         };
 
 

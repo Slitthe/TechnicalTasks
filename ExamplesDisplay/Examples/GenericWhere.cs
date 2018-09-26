@@ -25,8 +25,14 @@ namespace ExamplesDisplay.Examples
 
             var whereResults = Where<int>(dummyData, (i) => i >= 5 );
             displayText += DisplayFormatHelpers.DescriptionValueFormat(
-                "After applying the where method with the \"int\" type argument and only keeping integers greater or equal to 5.",
+                "Using the Where<T>() method to keep values which are >= 5 only ||  Where<int>(dummyData, (i) => i >= 5 );",
                 DisplayFormatHelpers.WriteList(whereResults)
+            );
+
+            var whereExtensionResult = dummyData.Where((i) => i >= 5);
+            displayText += DisplayFormatHelpers.DescriptionValueFormat(
+                "Using the .Where() extension to achieve the same result ||  dummyData.Where((i) => i >= 5);",
+                DisplayFormatHelpers.WriteList(whereExtensionResult)
             );
 
 
@@ -53,7 +59,6 @@ namespace ExamplesDisplay.Examples
 
             int index = 0;
             results = new T[matches];
-
             foreach (T item in collectionObj)
             {
                 if (checker(item))
@@ -66,6 +71,40 @@ namespace ExamplesDisplay.Examples
             return results;
         }
 
+    }
+
+    public static class WhereExtensionMethod
+    {
+
+        public delegate bool WhereDelegate<T>(T item);
+
+        public static ICollection<T> Where<T>(this ICollection<T> collectionObj, WhereDelegate<T> checker)
+        {
+            int matches = 0;
+            T[] results;
+            foreach (T item in collectionObj)
+            {
+                var checkResult = checker(item);
+                if (checkResult)
+                {
+                    matches++;
+                }
+            }
+
+            int index = 0;
+            results = new T[matches];
+
+            foreach (T item in collectionObj)
+            {
+                if (checker(item))
+                {
+                    results[index] = item;
+                    index++;
+                }
+            }
+
+            return results;
+        }
     }
 
 }
