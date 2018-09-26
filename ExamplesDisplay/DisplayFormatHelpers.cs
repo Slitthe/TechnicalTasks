@@ -6,7 +6,7 @@ namespace ExamplesDisplay
 {
     public static class DisplayFormatHelpers
     {
-        public static string writeList<T>(IEnumerable<T> listToWrite)
+        public static string WriteList<T>(IEnumerable<T> listToWrite)
         {
             var returnText = "";
 
@@ -18,13 +18,13 @@ namespace ExamplesDisplay
             return returnText;
         }
 
-        public static string descriptionValueFormat(string desc, string val)
+        public static string DescriptionValueFormat(string desc, object val)
         {
             var formattedString = "\n\n";
 
             formattedString += desc;
-            formattedString += "\n------------------";
-            formattedString += val;
+            formattedString += "\n  ------------------  ";
+            formattedString += val.ToString();
 
             return formattedString;
         }

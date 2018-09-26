@@ -14,7 +14,7 @@ namespace ExamplesDisplay
         {
             get
             {
-                string footerText = "[x] Exit Application \n";
+                string footerText = "\n\n[x] Exit Application \n";
 
                 if (!mainMenuActive)
                 {
@@ -44,18 +44,33 @@ namespace ExamplesDisplay
         public static List<IExample> ExamplesList = new List<IExample>()
         {
             new YieldFibo(),
-            // new EnumerableExample(),
-            // new ListExample(),
             new LinqExample(),
             new ExtensionMethods(),
-            new CustomEnumerator()
+            new CustomEnumerator(),
+            new IListExample(),
+            new GenericWhere(),
+            new GenericCsvConvertor()
         };
 
 
+        public static void WriteToConsole(string startMessage, string consoleText)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.Clear();
+            Console.WriteLine(startMessage);
+            Console.WriteLine(consoleText);
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
+            Console.WriteLine(footer);
+        }
         public static void WriteToConsole(string consoleText)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+
             Console.Clear();
             Console.WriteLine(consoleText);
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(footer);
         }
 
@@ -112,7 +127,7 @@ namespace ExamplesDisplay
                 if (match && (int.Parse(key) - 1).ToString() == i.ToString())
                 {
                     mainMenuActive = false;
-                    WriteToConsole(ExamplesList[i].Display());
+                    WriteToConsole(ExamplesList[i].StartMessage, ExamplesList[i].Display());
                 }
             }
         }

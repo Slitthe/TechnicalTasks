@@ -9,7 +9,7 @@ namespace ExamplesDisplay.Examples
     {
         public ExtensionMethods()
         {
-            StartMessage = "Extension methods";
+            StartMessage = "Extension method for the int type which returns that int + 1";
             Name = "Extension methods";
         }
         public string StartMessage { get; set; }
@@ -20,10 +20,10 @@ namespace ExamplesDisplay.Examples
             var consoleText = "";
 
             int num = 42;
-            consoleText += DisplayFormatHelpers.descriptionValueFormat("Integer before using the extension method AddOne()", num.ToString());
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat("Integer before using the extension method AddOne()", num.ToString());
 
             num = num.AddOne();
-            consoleText += DisplayFormatHelpers.descriptionValueFormat("Integer after using the extension method AddOne()", num.ToString());
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat("Integer after using the extension method AddOne()", num.ToString());
 
             return consoleText;
 

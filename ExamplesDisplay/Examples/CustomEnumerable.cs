@@ -7,8 +7,8 @@ namespace ExamplesDisplay.Examples
 {
     class CustomEnumerator : IExample
     {
-        public string StartMessage { get; set; } = "Custom IEnumerable and iterating";
-        public string Name { set; get; } = "Creating a random number generator using by implemention the IEnumerable interface to a class";
+        public string StartMessage { get; set; } = "Creating a random number generator using by implemention the IEnumerable interface to a class";
+        public string Name { set; get; } = "Custom IEnumerable and iterating";
 
 
 
@@ -23,10 +23,10 @@ namespace ExamplesDisplay.Examples
             {
                 randNums.Add(randNum);
             }
-            displayText += DisplayFormatHelpers.descriptionValueFormat
+            displayText += DisplayFormatHelpers.DescriptionValueFormat
             (
                 "Iterating over the custom iterable class using a foreach",
-                DisplayFormatHelpers.writeList(randNums)
+                DisplayFormatHelpers.WriteList(randNums)
             );
 
             Console.WriteLine("\n\n\n");
@@ -39,10 +39,10 @@ namespace ExamplesDisplay.Examples
             {
                 randNums2.Add((int)enumClass2Enumerator.Current);
             }
-            displayText += DisplayFormatHelpers.descriptionValueFormat
+            displayText += DisplayFormatHelpers.DescriptionValueFormat
             (
                 "Iterating over the custom iterable class using a while loop",
-                DisplayFormatHelpers.writeList(randNums2)
+                DisplayFormatHelpers.WriteList(randNums2)
             );
 
             return displayText;

@@ -8,8 +8,8 @@ namespace ExamplesDisplay.Examples
     {
         public YieldFibo()
         {
-            StartMessage = "asdsadsa"; ;
-            Name = "Fibonacci sequence using yield return";
+            StartMessage = "Custom iterable fibonacci numbers generator"; ;
+            Name = "Fibonacci sequence - yield return";
         }
         public string StartMessage { get; set; }
         public string Name { get; set; }
