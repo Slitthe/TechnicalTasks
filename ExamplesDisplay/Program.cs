@@ -33,24 +33,25 @@ namespace ExamplesDisplay
 
                 for (int i = 0; i < ExamplesList.Count; i++)
                 {
-                    consoleText += $"{i + 1}) {ExamplesList[i].Name}\n";
+                    consoleText += $"{ExamplesList[i].Item3}) {ExamplesList[i].Item1.Name}\n";
                 }
-
                 return consoleText;
 
             }
         }
 
-        public static List<IExample> ExamplesList = new List<IExample>()
+        public static List<Tuple<IExample, ConsoleKey, char>> ExamplesList = new List<Tuple<IExample, ConsoleKey, char>>()
         {
-            new YieldFibo(),
-            new LinqExample(),
-            new ExtensionMethods(),
-            new CustomEnumerator(),
-            new IListExample(),
-            new GenericWhere(),
-            new GenericCsvConvertor(),
-            new GenericToArray()
+            new Tuple<IExample, ConsoleKey, char>(new YieldFibo(), ConsoleKey.D1, '1'),
+            new Tuple<IExample, ConsoleKey, char>(new LinqExample(), ConsoleKey.D2, '2'),
+            new Tuple<IExample, ConsoleKey, char>(new ExtensionMethods(), ConsoleKey.D3, '3'),
+            new Tuple<IExample, ConsoleKey, char>(new CustomEnumerator(), ConsoleKey.D4, '4'),
+            new Tuple<IExample, ConsoleKey, char>(new IListExample(), ConsoleKey.D5, '5'),
+            new Tuple<IExample, ConsoleKey, char>(new GenericWhere(), ConsoleKey.D6, '6'),
+            new Tuple<IExample, ConsoleKey, char>(new GenericCsvConvertor(), ConsoleKey.D7, '7'),
+            new Tuple<IExample, ConsoleKey, char>(new GenericToArray(), ConsoleKey.D8, '8'),
+            new Tuple<IExample, ConsoleKey, char>(new ToListExample(), ConsoleKey.D9, '9'),
+            new Tuple<IExample, ConsoleKey, char>(new BoxingUnboxingExample(), ConsoleKey.A, 'a')
         };
 
 
@@ -83,9 +84,10 @@ namespace ExamplesDisplay
             WriteToConsole(MainMenu);
             while (true)
             {
-                string key = Console.ReadKey().KeyChar.ToString().ToLower();
+                // use enums instead of strings, refactor
+                ConsoleKey key = Console.ReadKey().Key;
 
-                if (key == "x")
+                if (key == ConsoleKey.X)
                 {
                     Environment.Exit(0);
                 }
@@ -97,7 +99,7 @@ namespace ExamplesDisplay
             }
         }
 
-        private static void KeyChecker(string key)
+        private static void KeyChecker(ConsoleKey key)
         {
             if (mainMenuActive)
             {
@@ -109,26 +111,24 @@ namespace ExamplesDisplay
             }
         }
 
-        private static void ResetMenu(string key)
+        private static void ResetMenu(ConsoleKey key)
         {
-            if (key == "b")
+            if (key == ConsoleKey.B)
             {
                 mainMenuActive = true;
                 WriteToConsole(MainMenu);
             }
         }
 
-        private static void WriteExample(string key)
+        private static void WriteExample(ConsoleKey key)
         {
             for (int i = 0; i < ExamplesList.Count; i++)
             {
-                var regexp = @"[0-9]{1}";
-                bool match = Regex.Match(key, regexp).Success;
-
-                if (match && (int.Parse(key) - 1).ToString() == i.ToString())
+                // if the key is the exames list
+                if (key == ExamplesList[i].Item2)
                 {
                     mainMenuActive = false;
-                    WriteToConsole(ExamplesList[i].StartMessage, ExamplesList[i].Display());
+                    WriteToConsole(ExamplesList[i].Item1.StartMessage, ExamplesList[i].Item1.Display());
                 }
             }
         }

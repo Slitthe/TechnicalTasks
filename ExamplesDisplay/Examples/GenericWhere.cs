@@ -38,6 +38,7 @@ namespace ExamplesDisplay.Examples
 
 
 
+
             return displayText;
         }
 

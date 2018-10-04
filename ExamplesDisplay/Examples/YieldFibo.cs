@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ExamplesDisplay.Examples
@@ -8,7 +9,7 @@ namespace ExamplesDisplay.Examples
     {
         public YieldFibo()
         {
-            StartMessage = "Custom iterable fibonacci numbers generator"; ;
+            StartMessage = "Custom iterable fibonacci numbers generator (numbers <= 1000)"; ;
             Name = "Fibonacci sequence - yield return";
         }
         public string StartMessage { get; set; }
@@ -16,9 +17,15 @@ namespace ExamplesDisplay.Examples
         public string Display()
         {
             string consoleText = "";
-            int maxValue = 1_000_000;
+            int maxValue = 1_000;
             Console.WriteLine($"Gettings all the fibonacci numbers that are less than {maxValue} \n");
-            foreach (var fibo in GetFiboNumbers(1000))
+
+            var fiboNums = GetFiboNumbers(maxValue);
+            foreach (var fibo in fiboNums)
+            {
+                consoleText += fibo + "\n";
+            }
+            foreach (var fibo in fiboNums)
             {
                 consoleText += fibo + "\n";
             }

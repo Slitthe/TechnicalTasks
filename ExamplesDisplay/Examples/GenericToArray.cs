@@ -21,6 +21,7 @@ namespace ExamplesDisplay.Examples
         }
 
     }
+
     class GenericToArray : IExample
     {
         public string StartMessage { get; set; } = "Used on ICollection<T> types";
