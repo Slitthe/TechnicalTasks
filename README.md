@@ -16,3 +16,7 @@
    https://www.youtube.com/watch?v=uNTNEfwYXhI (first half of video)
 7. readyonly vs const
     https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly
+    
+8. ToString() method
+9. Boxing and unboxing
+   https://www.youtube.com/watch?v=BneQESe5VXw
