@@ -10,13 +10,13 @@ namespace ExamplesDisplay
 
     class Program
     {
-        private static string footer
+        private static string Footer
         {
             get
             {
                 string footerText = "\n\n[x] Exit Application \n";
 
-                if (!mainMenuActive)
+                if (!_mainMenuActive)
                 {
                     footerText += "[b] Main Menu";
                 }
@@ -24,7 +24,7 @@ namespace ExamplesDisplay
             }
         }
 
-        private static bool mainMenuActive = true;
+        private static bool _mainMenuActive = true;
         private static string MainMenu
         {
             get 
@@ -50,7 +50,7 @@ namespace ExamplesDisplay
             new Tuple<IExample, ConsoleKey, char>(new GenericWhere(), ConsoleKey.D6, '6'),
             new Tuple<IExample, ConsoleKey, char>(new GenericCsvConvertor(), ConsoleKey.D7, '7'),
             new Tuple<IExample, ConsoleKey, char>(new GenericToArray(), ConsoleKey.D8, '8'),
-            new Tuple<IExample, ConsoleKey, char>(new ToListExample(), ConsoleKey.D9, '9'),
+            new Tuple<IExample, ConsoleKey, char>(new ToStringExample(), ConsoleKey.D9, '9'),
             new Tuple<IExample, ConsoleKey, char>(new BoxingUnboxingExample(), ConsoleKey.A, 'a')
         };
 
@@ -64,7 +64,7 @@ namespace ExamplesDisplay
             Console.WriteLine(consoleText);
             Console.ForegroundColor = ConsoleColor.Magenta;
 
-            Console.WriteLine(footer);
+            Console.WriteLine(Footer);
         }
         public static void WriteToConsole(string consoleText)
         {
@@ -73,7 +73,7 @@ namespace ExamplesDisplay
             Console.Clear();
             Console.WriteLine(consoleText);
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(footer);
+            Console.WriteLine(Footer);
         }
 
 
@@ -101,7 +101,7 @@ namespace ExamplesDisplay
 
         private static void KeyChecker(ConsoleKey key)
         {
-            if (mainMenuActive)
+            if (_mainMenuActive)
             {
                 WriteExample(key);
             }
@@ -115,20 +115,20 @@ namespace ExamplesDisplay
         {
             if (key == ConsoleKey.B)
             {
-                mainMenuActive = true;
+                _mainMenuActive = true;
                 WriteToConsole(MainMenu);
             }
         }
 
         private static void WriteExample(ConsoleKey key)
         {
-            for (int i = 0; i < ExamplesList.Count; i++)
+            foreach (var example in ExamplesList)
             {
                 // if the key is the exames list
-                if (key == ExamplesList[i].Item2)
+                if (key == example.Item2)
                 {
-                    mainMenuActive = false;
-                    WriteToConsole(ExamplesList[i].Item1.StartMessage, ExamplesList[i].Item1.Display());
+                    _mainMenuActive = false;
+                    WriteToConsole(example.Item1.StartMessage, example.Item1.Display());
                 }
             }
         }

@@ -9,9 +9,9 @@ using System.Text;
 
 namespace ExamplesDisplay.Examples
 {
-    public class ToListExample : IExample
+    public class ToStringExample : IExample
     {
-        public ToListExample()
+        public ToStringExample()
         {
             StartMessage = ""; ;
             Name = "Custom ToString() implementation";
