@@ -22,18 +22,38 @@ namespace ExamplesDisplay.Examples
         {
             string consoleText = "";
 
-            var instance = new EnumerableExample();
-            
-            
-            //Console.WriteLine(exampleInstance);
+            var list = new List<object>
+            {
+                new Something("val one", "val two"),
+                2,
+                false,
+                3.2,
+                3.2f,
+                3.2f,
+                's',
+                "something",
+                new StructExaple("struct val one", "struct val two")
+            };
+            IEnumerable<object> items = new EnumerableExample<object>(list);
 
 
-            //consoleText = consoleText + exampleInstance;
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat
+            (
+                "Raw list: ",
+                DisplayFormatHelpers.WriteList(list)
+            );
+
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat
+            (
+                "Printing the above list using the custom .ToString(): ",
+                items
+            );
+
+
 
             return consoleText;
         }
 
-        //public static partial class overwrite Console
     }
 
 
@@ -96,17 +116,6 @@ namespace ExamplesDisplay.Examples
     //    }
     //}
 
-    public class EnumerableExample
-    {
-       
-        public string Something()
-        {
-            return "42";
-        }
-
-       
-    }
-
     public class EnumerableExample<T> : IEnumerable<T>
     {
         public EnumerableExample(IList<T> list)
@@ -135,9 +144,9 @@ namespace ExamplesDisplay.Examples
 
             foreach (var item in List)
             {
-                Type t = item.GetType();
+                Type itemType = item.GetType();
 
-                if (t.IsPrimitive)
+                if (itemType.IsPrimitive)
                 {
                     writeString.Add(item.ToString());
                 }
@@ -161,6 +170,8 @@ namespace ExamplesDisplay.Examples
             return combined;
         }
     }
+
+
     public static class ReflectionHelpers
     {
         public static Dictionary<string, object> GetPropertiesList(object obj)
@@ -213,29 +224,4 @@ namespace ExamplesDisplay.Examples
             PropTwo = propTwo;
         }
     }
-
-    //class Program
-    //{
-    //    public static void Main(string[] args)
-    //    {
-    //        var list = new List<object>
-    //        {
-    //            new Something("val one", "val two"),
-    //            2,
-    //            false,
-    //            3.2,
-    //            3.2f,
-    //            3.2f,
-    //            's',
-    //            "something",
-    //            new StructExaple("struct val one", "struct val two")
-    //        };
-
-    //        IEnumerable<object> items = new EnumerableExample<object>(list);
-
-    //        Console.WriteLine(items);
-    //    }
-    //}
-
-
 }
