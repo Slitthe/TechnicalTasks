@@ -29,7 +29,7 @@ namespace ExamplesDisplay.Examples
                 false,
                 3.2,
                 3.2f,
-                3.2f,
+                3.2m,
                 's',
                 "something",
                 new StructExaple("struct val one", "struct val two")
@@ -118,11 +118,13 @@ namespace ExamplesDisplay.Examples
 
     public class EnumerableExample<T> : IEnumerable<T>
     {
+        private IList<T> List { get; }
+
+
         public EnumerableExample(IList<T> list)
         {
             List = list;
         }
-        private IList<T> List { get; }
 
         public void Add(T item)
         {

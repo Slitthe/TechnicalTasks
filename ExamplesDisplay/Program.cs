@@ -51,7 +51,10 @@ namespace ExamplesDisplay
             new Tuple<IExample, ConsoleKey, char>(new GenericCsvConvertor(), ConsoleKey.D7, '7'),
             new Tuple<IExample, ConsoleKey, char>(new GenericToArray(), ConsoleKey.D8, '8'),
             new Tuple<IExample, ConsoleKey, char>(new ToStringExample(), ConsoleKey.D9, '9'),
-            new Tuple<IExample, ConsoleKey, char>(new BoxingUnboxingExample(), ConsoleKey.A, 'a')
+            new Tuple<IExample, ConsoleKey, char>(new BoxingUnboxingExample(), ConsoleKey.A, 'a'),
+            new Tuple<IExample, ConsoleKey, char>(new ExplicitInterfaceImplementation(), ConsoleKey.B, 'b'),
+            new Tuple<IExample, ConsoleKey, char>(new ValueTuplesExample(), ConsoleKey.C, 'c')
+
         };
 
 
