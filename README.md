@@ -23,3 +23,13 @@
    - https://www.youtube.com/watch?v=BneQESe5VXw
    
    - https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing
+
+10. Expression-bodied members
+   -  https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members
+
+11. Explicit Interface implementation
+   - https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation
+  
+12. Value tuples
+   - https://stackoverflow.com/questions/41084411/whats-the-difference-between-system-valuetuple-and-system-tuple
+   - https://ilspy.net/ (Tool for viewing .NET assembly code as it would look in different C# versions)

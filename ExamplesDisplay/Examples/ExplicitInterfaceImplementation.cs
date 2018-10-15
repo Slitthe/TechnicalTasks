@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ExamplesDisplay.Examples
 {
@@ -18,17 +20,26 @@ namespace ExamplesDisplay.Examples
         {
             string consoleText = "";
 
-            var exampleInstance = new Example();
+            Example exampleInstance = new Example();
 
             IOne exampleIOne = exampleInstance;
             ITwo exampleITwo = exampleInstance;
+
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat(
+                "Accessing the method explicitly using the type of the variable",
+                exampleIOne.SaySomething()
+            );
             
-            consoleText += exampleIOne.SaySomething();
-            consoleText += "\n";
-            consoleText += exampleITwo.SaySomething();
-            
+
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat(
+                "Accessing the method explicitly by type casting the class itself",
+                ((ITwo)exampleInstance).SaySomething()
+            );
+
             return consoleText;
         }
+
+        
 
         
     }
