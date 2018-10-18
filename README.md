@@ -18,13 +18,14 @@
     - https://stackoverflow.com/questions/55984/what-is-the-difference-between-const-and-readonly
     
 8. ToString() method
-9. Boxing and unboxing
-
+      - https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/override
+      - https://docs.microsoft.com/en-us/dotnet/api/system.object.tostring?view=netframework-4.7.2
+9.  Boxing and unboxing
    - https://www.youtube.com/watch?v=BneQESe5VXw
    
    - https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing
 
-10. Expression-bodied members
+11. Expression-bodied members
    -  https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members
 
 11. Explicit Interface implementation
@@ -33,3 +34,11 @@
 12. Value tuples
    - https://stackoverflow.com/questions/41084411/whats-the-difference-between-system-valuetuple-and-system-tuple
    - https://ilspy.net/ (Tool for viewing .NET assembly code as it would look in different C# versions)
+
+13. Async/await
+   (Threads -> Tasks -> Async/await)
+   -- 
+
+
+
+Tasks are background threads, this means that when the main threads end the tasks queued in the thread pool (and the thread pools themselves) also end

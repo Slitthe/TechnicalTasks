@@ -10,7 +10,7 @@ namespace ExamplesDisplay.Examples
     {
         public ExpressionBodyExample()
         {
-            StartMessage = ""; ;
+            StartMessage = "";
             Name = "Expression-body members";
         }
         public string StartMessage { get; set; }
@@ -30,12 +30,20 @@ namespace ExamplesDisplay.Examples
         private int _result;
 
         // constructor
+        
         public ExpressionBodyMembersExample(int initialValue) => _result = initialValue; 
         // method
         public int Add(int a, int b) => a + b;
 
         // read-only property
         public int Result => _result;
+
+        //public int Result
+        //{
+        //    get { return _result; }
+        //}
+
+        //public int Result { get; }
 
         // property with getters and setters
         public int ResultProp

@@ -17,6 +17,7 @@ namespace ExamplesDisplay.Examples
         public string Display()
         {
             string consoleText = "";
+
             int maxValue = 1_000;
             Console.WriteLine($"Gettings all the fibonacci numbers that are less than {maxValue} \n");
 

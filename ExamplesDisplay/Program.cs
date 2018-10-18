@@ -53,7 +53,8 @@ namespace ExamplesDisplay
             new Tuple<IExample, ConsoleKey, char>(new ToStringExample(), ConsoleKey.D9, '9'),
             new Tuple<IExample, ConsoleKey, char>(new BoxingUnboxingExample(), ConsoleKey.A, 'a'),
             new Tuple<IExample, ConsoleKey, char>(new ExplicitInterfaceImplementation(), ConsoleKey.B, 'b'),
-            new Tuple<IExample, ConsoleKey, char>(new ValueTuplesExample(), ConsoleKey.C, 'c')
+            new Tuple<IExample, ConsoleKey, char>(new ValueTuplesExample(), ConsoleKey.C, 'c'),
+            new Tuple<IExample, ConsoleKey, char>(new MultipleThreadsCalculateExample(), ConsoleKey.D, 'd')
 
         };
 
