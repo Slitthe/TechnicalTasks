@@ -37,8 +37,22 @@
 
 13. Async/await
    (Threads -> Tasks -> Async/await)
-   -- 
+   - https://www.youtube.com/watch?v=XXg9g56FS0k (part 1)
+   - https://www.youtube.com/watch?v=CzgDxdwTJds (part 2)
+---
+## Week 41
 
 
 
-Tasks are background threads, this means that when the main threads end the tasks queued in the thread pool (and the thread pools themselves) also end
+### IL/ILDasm
+   - IL Viewer (ReSharper tool, ReSharper->Windows->IL Viewer)
+### Satellite assemblies
+   - https://www.codeproject.com/Articles/352105/Satellite-Assembly-Example-in-Csharp-Step-by-Step
+  
+### Background processing and, multiple threads & continue when done & s Sum of array
+   - https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task?view=netframework-4.7.2
+   ( Task.WhenAll(), Task.ContinueWith(), Task.ContinueWith() )
+   - https://docs.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=netframework-4.7.2
+  
+### Threads/ThreadPool
+   - https://www.youtube.com/watch?v=hOVSKuFTUiI

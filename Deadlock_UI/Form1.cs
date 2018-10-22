@@ -32,14 +32,14 @@ namespace Deadlock_UI
 
         public async Task DoSomethingAsync()
         {
-            await Task.Delay(1000).ConfigureAwait(false);
+            Debug.WriteLine($"Start of the do something async [{Thread.CurrentThread.ManagedThreadId}]");
 
-            await Task.Run(
-                async () =>
+            await Task.Run(() => 
                 {
-                    await DoSomethingAsync().ConfigureAwait(false);
+                    Debug.WriteLine($"Inside the inner task[{Thread.CurrentThread.ManagedThreadId}]");
                 }    
-            ).ConfigureAwait(false);
+            );
+
         }
 
         private void button2_Click(object sender, EventArgs e)
