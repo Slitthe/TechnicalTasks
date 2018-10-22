@@ -32,19 +32,33 @@ namespace Deadlock_UI
 
         public async Task DoSomethingAsync()
         {
-            Debug.WriteLine($"Start of the do something async [{Thread.CurrentThread.ManagedThreadId}]");
+            Debug.WriteLine($"---- Starting the {nameof(DoSomethingAsync)} [{Thread.CurrentThread.ManagedThreadId}]");
 
-            await Task.Run(() => 
-                {
-                    Debug.WriteLine($"Inside the inner task[{Thread.CurrentThread.ManagedThreadId}]");
-                }    
-            );
+            await Task.Run(async () =>
+            {
+                await Task.Delay(500);
+                Debug.WriteLine($"---- Inside the inner task [{Thread.CurrentThread.ManagedThreadId}]");
+            }); // .ConfigureAwait80(false); --> will solve the issue by running the rest of the method code in another thread (via tasks)
+
+            // cannot continue on with returning/exiting the rest of the method (even though it is empty)
+            // because the rest of the code will try to run on the main thread (because of the sync context in an UI application)
+            // and because the main thread is blocked it results in a beautiful DEADLOCK
+
+
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DoSomethingAsync().Wait();
+            Debug.WriteLine($"---- Before firing the DoSomethingAsync [{Thread.CurrentThread.ManagedThreadId}]");
+
+            // fires off the async Task method
+            var t = DoSomethingAsync();
+
+            Debug.WriteLine($"---- Before waiting the DoSomethingAsync [{Thread.CurrentThread.ManagedThreadId}]");
+
+            // manually waits for it
+            t.Wait();
         }
     }
 }
