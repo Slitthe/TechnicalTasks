@@ -20,6 +20,8 @@ namespace ExamplesDisplay.Examples
         public volatile int Sum = default(int);
         public string StartMessage { get; set; }
         public string Name { get; set; }
+
+
         public string Display()
         {
             string consoleText = "";
@@ -40,19 +42,19 @@ namespace ExamplesDisplay.Examples
             for (int i = 0; i < numList.Count; i += amountToTake)
             {
                 List<int> sliceToCalculate = numList.Skip(i).Take(amountToTake).ToList();
-                var t = Calculate(sliceToCalculate);
+                Task<int> calculateTask = Calculate(sliceToCalculate);
 
-                // thread safe integer adding upon each task completion
-                t.ContinueWith(task =>
+                // adding the result to the sum in a Thread-safe way (Interlocked) class
+                calculateTask.ContinueWith(task =>
                 {
                     consoleText +=LogThread($"Minisum is: {task.Result}");
                     Interlocked.Add(ref Sum, task.Result);
                 });
-                taskList.Add(t);
+                taskList.Add(calculateTask);
             }
             
             
-
+            // waits for all the calculate slice tasks to complete
             Task.WhenAll(taskList).Wait();
             consoleText += LogThread($"Final sum is: {Sum}");
             
@@ -67,9 +69,9 @@ namespace ExamplesDisplay.Examples
         {
             return await Task.Run((() =>
             {
-                var sum = 0;
+                int sum = 0;
                 
-                foreach (var num in nums)
+                foreach (int num in nums)
                 {
                     sum += num;
                 }

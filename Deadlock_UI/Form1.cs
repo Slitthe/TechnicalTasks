@@ -16,13 +16,6 @@ namespace Deadlock_UI
 {
     public partial class Form1 : Form
     {
-        public string ResOne = "resource one";
-        public string ResTwo = "resource two";
-
-        public string GetSomeRes()
-        {
-            return "Some res";
-        }
 
         public Form1()
         {
@@ -42,23 +35,20 @@ namespace Deadlock_UI
 
             // cannot continue on with returning/exiting the rest of the method (even though it is empty)
             // because the rest of the code will try to run on the main thread (because of the sync context in an UI application)
-            // and because the main thread is blocked it results in a beautiful DEADLOCK
-
-
-
+            // and because the main thread is blocked this results in a beautiful DEADLOCK
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Debug.WriteLine($"---- Before firing the DoSomethingAsync [{Thread.CurrentThread.ManagedThreadId}]");
 
-            // fires off the async Task method
-            var t = DoSomethingAsync();
+            // get the task object of the async method
+            Task task = DoSomethingAsync();
 
             Debug.WriteLine($"---- Before waiting the DoSomethingAsync [{Thread.CurrentThread.ManagedThreadId}]");
 
-            // manually waits for it
-            t.Wait();
+            // manually wait for it
+            task.Wait();
         }
     }
 }

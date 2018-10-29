@@ -16,8 +16,8 @@ namespace Satellite_assemblies
 {
     public partial class Form1 : Form
     {
-        // long language code to code
-        private Dictionary<string, string> _dropdownToLangCode = new Dictionary<string, string>()
+        // used to map the dropdown items to language codes
+        private readonly Dictionary<string, string> _dropdownToLangCode = new Dictionary<string, string>()
         {
             { "English", "en-US" },
             { "Romanian", "ro" },
@@ -25,35 +25,32 @@ namespace Satellite_assemblies
             { "Russian", "ru" },
         };
 
-
-        
-        private ResourceManager _resourceManager =
-            new ResourceManager("Satellite_assemblies.string", Assembly.GetExecutingAssembly());
-
+        private readonly ResourceManager _resourceManager = new ResourceManager("Satellite_assemblies.string", Assembly.GetExecutingAssembly());
 
         public Form1()
         {
             InitializeComponent();
         }
-
+        
         public void ChangeLanguage(string language)
         {
-
-            // change culture
+            // change the culture
             string languageCode = _dropdownToLangCode[language];
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(languageCode);
 
-            // get resource depending on the localization
+            // get resource depending on the current culture
             string localizedCatName = _resourceManager.GetString($"catName");
+            
             label1.Text = localizedCatName;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // cast the dropdown and get its value
-            var senderCasted = (ComboBox) sender;
-            ChangeLanguage(senderCasted.SelectedItem.ToString());
+            // dropdown menu selected event
+            var senderComboBox = (ComboBox) sender;
+
+            ChangeLanguage( senderComboBox.SelectedItem.ToString() );
         }
     }
 }
