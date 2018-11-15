@@ -30,30 +30,53 @@ namespace ExamplesDisplay.Examples
             var taskList = new List<Task<int>>();
             int amountToTake = 3;
 
-            var numList = new List<int>();
+            //var numList = new List<int>();
 
-            for (int i = 0; i < 1000; i++)
-            {
-                numList.Add(i);
-            }
-            
+            //for (int i = 0; i < 1001; i++)
+            //{
+            //    numList.Add(i);
+            //}
+
+            var first1000Ints = Enumerable.Range(0, 1001).ToList();
+
             var stopwatch = Stopwatch.StartNew();
 
-            for (int i = 0; i < numList.Count; i += amountToTake)
+            //foreach (int first1000Int in first1000Ints)
+            //{
+            //    List<int> sliceToCalculate = first1000Ints.Skip(first1000Int).Take(amountToTake).ToList();
+            //    Task<int> calculateTask = Calculate(sliceToCalculate);
+
+            //    // adding the result to the sum in a Thread-safe way (Interlocked) class
+            //    calculateTask.ContinueWith(task =>
+            //    {
+            //        consoleText += LogThread($"Minisum is: {task.Result}");
+            //        Interlocked.Add(ref Sum, task.Result);
+            //    });
+            //    taskList.Add(calculateTask);
+            //}
+
+            for (int i = 0; i < first1000Ints.Count; i += amountToTake)
             {
-                List<int> sliceToCalculate = numList.Skip(i).Take(amountToTake).ToList();
+                List<int> sliceToCalculate = first1000Ints.Skip(i).Take(amountToTake).ToList();
                 Task<int> calculateTask = Calculate(sliceToCalculate);
 
                 // adding the result to the sum in a Thread-safe way (Interlocked) class
                 calculateTask.ContinueWith(task =>
                 {
-                    consoleText +=LogThread($"Minisum is: {task.Result}");
+                    consoleText += LogThread($"Minisum is: {task.Result}");
+                    //lock (this)
+                    //{
+                    //    var partialSum = Sum + task.Result;
+                    //    Sum = partialSum;
+
+                    //}
+
                     Interlocked.Add(ref Sum, task.Result);
                 });
                 taskList.Add(calculateTask);
             }
-            
-            
+
+
             // waits for all the calculate slice tasks to complete
             Task.WhenAll(taskList).Wait();
             consoleText += LogThread($"Final sum is: {Sum}");
