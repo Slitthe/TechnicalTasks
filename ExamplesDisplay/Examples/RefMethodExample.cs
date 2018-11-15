@@ -20,43 +20,47 @@ namespace ExamplesDisplay.Examples
             string consoleText = "";
 
             // VALUE TYPE
-            int numberValueTypeExample = 0;
+            string stringValueTypeExample = "Initial string.";
 
-            ChangeNumberWithoutRef(numberValueTypeExample);
             consoleText += DisplayFormatHelpers.DescriptionValueFormat(
-                $"Value of the{nameof(numberValueTypeExample)} after calling the non-ref method: ", numberValueTypeExample);
+                $"Initial Value of the \"{nameof(stringValueTypeExample)}\": ",
+                stringValueTypeExample);
 
-
-            ChangeNumberWithRef(ref numberValueTypeExample);
+            ChangeStringWithoutRef(stringValueTypeExample);
             consoleText += DisplayFormatHelpers.DescriptionValueFormat(
-                $"Value of the{nameof(numberValueTypeExample)} after calling the non-ref method: ", numberValueTypeExample);
+                $"Value of the \"{nameof(stringValueTypeExample)}\" after calling the non-ref method: ", stringValueTypeExample);
+
+
+            ChangeStringWithRef(ref stringValueTypeExample);
+            consoleText += DisplayFormatHelpers.DescriptionValueFormat(
+                $"Value of the \"{nameof(stringValueTypeExample)}\" after calling the ref method: ", stringValueTypeExample);
 
 
             // REFERENCE TYPE
             RefExampleModel refTypeExample = new RefExampleModel() { Name = "Initial Name"};
 
             consoleText += DisplayFormatHelpers.DescriptionValueFormat(
-                $"Guid of the initial object: ", refTypeExample.GUID);
+                $"Guid of the initial object: ", refTypeExample.GuidValue);
 
             ChangeRefTypeWithoutRef(refTypeExample);
             consoleText += DisplayFormatHelpers.DescriptionValueFormat(
-                $"Guid of the initial object passed through an non-ref method (attempting to reassign it inside the method): ", refTypeExample.GUID);
+                $"Guid of the initial object passed through an non-ref method (attempting to reassign it inside the method): ", refTypeExample.GuidValue);
 
             ChangeRefTypeWithRef(ref refTypeExample);
             consoleText += DisplayFormatHelpers.DescriptionValueFormat(
-                $"Guid of the initial object passed through an ref method: (attempting to reassign it inside the method)", refTypeExample.GUID);
+                $"Guid of the initial object passed through an ref method: (attempting to reassign it inside the method)", refTypeExample.GuidValue);
 
             return consoleText; 
         }
 
         // VALUE TYPE
-        public void ChangeNumberWithoutRef(int numberToChange)
+        public void ChangeStringWithoutRef(string numberToChange)
         {
-            numberToChange = 42;
+            numberToChange = "Changed inside the non-ref method";
         }
-        public void ChangeNumberWithRef(ref int numberToChange)
+        public void ChangeStringWithRef(ref string numberToChange)
         {
-            numberToChange = 42;
+            numberToChange = "Changed inside the ref method.";
         }
 
         // REFERENCE TYPE
@@ -75,7 +79,7 @@ namespace ExamplesDisplay.Examples
     // MODEL TO USE IN THE DEMO
     public class RefExampleModel
     {
-        public string GUID { get; set; } = Guid.NewGuid().ToString();
+        public string GuidValue { get; set; } = Guid.NewGuid().ToString();
         public string Name { get; set; }
     }
 }
